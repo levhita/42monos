@@ -4,7 +4,7 @@
 [ext_resource path="res://Player/Tomas/Tomas.gd" type="Script" id=2]
 [ext_resource path="res://Player/Tomas/SwordHitbox.gd" type="Script" id=3]
 [ext_resource path="res://Music and Sounds/Evade.wav" type="AudioStream" id=4]
-[ext_resource path="res://Player/Player.png" type="Texture" id=5]
+[ext_resource path="res://Player/Tomas/Tomas.png" type="Texture" id=5]
 [ext_resource path="res://Music and Sounds/Swipe.wav" type="AudioStream" id=6]
 [ext_resource path="res://Boxes/Hurtbox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://White.shader" type="Shader" id=8]
