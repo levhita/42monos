@@ -9,7 +9,7 @@ export_presets.cfg
 .mono/S
 
 # Assets folder imported files
-assets/*.import
+assets/**/*.import
 
 # Mac
 .DS_Store
