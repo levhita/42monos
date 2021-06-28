@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const HurtSound = preload("res://Player/HurtSound.tscn")
+const HurtSound = preload("res://Player/Tomas/HurtSound.tscn")
 
 # Frames as in 60fps
 export var MAX_SPEED = 80
