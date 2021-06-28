@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PropsTileMap.png-b99e5c272b9ca9224ca407a4f37d6885.stex"
+path="res://.import/PropsTileMap.png-2cf78ab4608e9bb06df470abf789c68e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/PropsTileMap.png"
-dest_files=[ "res://.import/PropsTileMap.png-b99e5c272b9ca9224ca407a4f37d6885.stex" ]
+source_file="res://World/Props/PropsTileMap.png"
+dest_files=[ "res://.import/PropsTileMap.png-2cf78ab4608e9bb06df470abf789c68e.stex" ]
 
 [params]
 

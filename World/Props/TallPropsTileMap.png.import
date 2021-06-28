@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TallPropsTileMap.png-335102094f437de7faa76181f7f926e3.stex"
+path="res://.import/TallPropsTileMap.png-248b72be1c68a341e15b038420dba0df.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/TallPropsTileMap.png"
-dest_files=[ "res://.import/TallPropsTileMap.png-335102094f437de7faa76181f7f926e3.stex" ]
+source_file="res://World/Props/TallPropsTileMap.png"
+dest_files=[ "res://.import/TallPropsTileMap.png-248b72be1c68a341e15b038420dba0df.stex" ]
 
 [params]
 

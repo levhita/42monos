@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TerrainTileMap.png-3fe6e0a6e63c1f95832a3632694ca7ef.stex"
+path="res://.import/TerrainTileMap.png-c783f17632692b5016188d96923d0db1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/TerrainTileMap.png"
-dest_files=[ "res://.import/TerrainTileMap.png-3fe6e0a6e63c1f95832a3632694ca7ef.stex" ]
+source_file="res://World/Terrain/TerrainTileMap.png"
+dest_files=[ "res://.import/TerrainTileMap.png-c783f17632692b5016188d96923d0db1.stex" ]
 
 [params]
 

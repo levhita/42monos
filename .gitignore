@@ -8,5 +8,8 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/S
 
+# Assets folder imported files
+assets/*.import
+
 # Mac
 .DS_Store
