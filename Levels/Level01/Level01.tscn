@@ -32,7 +32,7 @@ remote_path = NodePath("../../../Camera2D")
 position = Vector2( 68, 37 )
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
-position = Vector2( -10.0713, -12.3783 )
+position = Vector2( -10.0713, -11.3783 )
 
 [node name="BottomRight" parent="Camera2D/Limits" index="1"]
 position = Vector2( 398.913, 237.921 )
@@ -52,6 +52,6 @@ autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
-color = Color( 0.89, 1, 0.89, 1 )
+color = Color( 0.372549, 0.372549, 0.607843, 1 )
 
 [editable path="Camera2D"]
