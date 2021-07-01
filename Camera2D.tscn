@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Camera2D.gd" type="Script" id=1]
-[ext_resource path="res://World/Gradient/GameBoy.material" type="Material" id=2]
 
 [node name="Camera2D" type="Camera2D"]
 current = true
@@ -24,15 +23,4 @@ __meta__ = {
 position = Vector2( 168, 96 )
 __meta__ = {
 "_gizmo_extents_": 100.0
-}
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = ExtResource( 2 )
-margin_left = -267.0
-margin_top = -204.0
-margin_right = 255.0
-margin_bottom = 185.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
 }

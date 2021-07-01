@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://World/Gradient/GradientMap.shader" type="Shader" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.0431373, 0.317647, 0.592157, 0.835294, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.197233, 0.0840454, 0.199219, 1, 0.596078, 0.184314, 0.6, 1, 0.387726, 0.634341, 0.820313, 1, 0.607843, 0.803922, 0.964706, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 256
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/gradient = SubResource( 2 )
