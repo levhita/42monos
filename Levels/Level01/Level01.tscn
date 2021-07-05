@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Tomas/Tomas.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Music and Sounds/Music.mp3" type="AudioStream" id=4]
 [ext_resource path="res://World/Terrain/Terrain.tres" type="TileSet" id=5]
-[ext_resource path="res://World/Gradient/LollyPop.tres" type="Texture" id=6]
+[ext_resource path="res://World/Gradient/SnowGradient.tres" type="Texture" id=6]
 [ext_resource path="res://World/Terrain/Collisions.tres" type="TileSet" id=7]
 [ext_resource path="res://World/Props/PropsTileMap.png" type="Texture" id=8]
+[ext_resource path="res://World/Elements/Clouds.png" type="Texture" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "WaterRock"
@@ -150,8 +151,14 @@
 
 [sub_resource type="Environment" id=4]
 background_mode = 4
+background_canvas_max_layer = 1
 ambient_light_energy = 11.57
-glow_bloom = 0.17
+glow_levels/4 = true
+glow_levels/5 = false
+glow_intensity = 1.9
+glow_strength = 0.8
+glow_bloom = 1.0
+glow_blend_mode = 1
 glow_hdr_threshold = 0.0
 adjustment_enabled = true
 adjustment_color_correction = ExtResource( 6 )
@@ -204,6 +211,11 @@ START_VECTOR = Vector2( 1, 0 )
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Collision/Tomas"]
 remote_path = NodePath("../../../Camera2D")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+autoplay = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 2 )]
@@ -212,12 +224,30 @@ margin_top = 3.0
 margin_right = 68.0
 margin_bottom = 15.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-volume_db = -10.0
-autoplay = true
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 1, 0, 0, 0.117647 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 10
+follow_viewport_enable = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_offset = Vector2( 1, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 0, 90 )
+texture = ExtResource( 9 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="ParallaxBackground/ParallaxLayer"]
+color = Color( 1, 1, 1, 0.294118 )
 
 [editable path="Camera2D"]
