@@ -866,6 +866,7 @@ vframes = 13
 frame = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = -1.5708
 shape = SubResource( 2 )
 
@@ -913,6 +914,7 @@ script = ExtResource( 3 )
 damage = 2
 
 [node name="CollisionShape2D" parent="HitboxPivot/Hitbox" index="0"]
+visible = false
 position = Vector2( -6.46145, 0.374577 )
 shape = SubResource( 49 )
 disabled = true
@@ -923,6 +925,7 @@ collision_mask = 0
 INVINCIBILITY_DURATION = 1.0
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
+visible = false
 position = Vector2( 0, -3 )
 shape = SubResource( 50 )
 

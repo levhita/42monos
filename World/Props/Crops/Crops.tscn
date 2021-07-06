@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Boxes/Hurtbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Props/Crops/Crops.gd" type="Script" id=2]
+[ext_resource path="res://World/Props/Crops/Wheat.tres" type="SpriteFrames" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 7.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "Weath"
+length = 0.1
+
+[node name="Crops" type="Node2D"]
+position = Vector2( 8.11798, -6.90208 )
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -16, -21.1209 )
+frames = ExtResource( 3 )
+centered = false
+
+[node name="Hurtbox" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 3 )
+collision_layer = 9
+SHOW_HIT = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 0, 3 )
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Weath = SubResource( 3 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
+[editable path="Hurtbox"]
