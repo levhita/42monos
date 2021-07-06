@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Corn.png-c85ebd75fa5777bf5f0248b212eb00be.stex"
+path="res://.import/Wheat.png-f2c8537a83ae7ee7fcbff8ce604eab73.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Props/Corn/Corn.png"
-dest_files=[ "res://.import/Corn.png-c85ebd75fa5777bf5f0248b212eb00be.stex" ]
+source_file="res://World/Props/Wheat/Wheat.png"
+dest_files=[ "res://.import/Wheat.png-f2c8537a83ae7ee7fcbff8ce604eab73.stex" ]
 
 [params]
 

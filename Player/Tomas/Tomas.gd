@@ -17,7 +17,8 @@ var velocity = Vector2.ZERO
 enum {
 	MOVE,
 	ROLL,
-	ATTACK
+	ATTACK,
+	PREPARE
 }
 var state = MOVE
 
@@ -33,10 +34,7 @@ func _ready():
 	animationTree.active = true
 	swordHitbox.damage = DAMAGE
 
-	animationTree.set("parameters/Idle/blend_position", START_VECTOR)
-	animationTree.set("parameters/Run/blend_position", START_VECTOR)
-	animationTree.set("parameters/Attack/blend_position", START_VECTOR)
-	animationTree.set("parameters/Roll/blend_position", START_VECTOR)
+	set_vectors(START_VECTOR)
 
 func _physics_process(delta):
 	match state:
@@ -46,25 +44,18 @@ func _physics_process(delta):
 			roll_state(delta)
 		ATTACK:
 			attack_state(delta)
+		PREPARE:
+			prepare_state(delta)
 
 func move_state(delta):
-	var input_vector = Vector2.ZERO
-
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") 
-	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	var input_vector = get_input_vector()
 	
 	# Force applied and resistance when zero input given
 	velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	velocity = velocity.clamped(MAX_SPEED)
 	
 	if input_vector != Vector2.ZERO:
-		roll_vector = input_vector.normalized()
-		swordHitbox.knockback_vector = input_vector.normalized()
-		
-		animationTree.set("parameters/Idle/blend_position", input_vector)
-		animationTree.set("parameters/Run/blend_position", input_vector)
-		animationTree.set("parameters/Attack/blend_position", input_vector)
-		animationTree.set("parameters/Roll/blend_position", input_vector)
+		set_vectors(input_vector)
 		animationState.travel('Run')
 	else:
 		animationState.travel('Idle')
@@ -72,11 +63,25 @@ func move_state(delta):
 	velocity = move_and_slide(velocity)
 
 	if Input.is_action_just_pressed("ui_accept"):
-		state = ATTACK
-		animationState.travel('Attack')
+		state = PREPARE
+		animationState.travel('Prepare')
 	if Input.is_action_just_pressed("ui_cancel"):
 		state = ROLL
 		animationState.travel('Roll')
+
+func prepare_state(delta):
+	var input_vector = get_input_vector()
+	print(input_vector)
+	#Increase power meter by delta
+	if Input.is_action_just_released("ui_accept"):
+		# if power meter is greater than X state=superattack
+		state = ATTACK
+		animationState.travel('Attack')
+	if(input_vector != Vector2.ZERO):
+		set_vectors(input_vector)
+	
+	velocity = velocity.move_toward(Vector2.ZERO, ACCELERATION * delta)
+	velocity = move_and_slide(velocity)
 
 func attack_state(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, ACCELERATION * delta)
@@ -89,7 +94,23 @@ func roll_state(delta):
 
 func die():
 	queue_free()
+
+func set_vectors(vector):
+	roll_vector = vector.normalized()
+	swordHitbox.knockback_vector = vector.normalized()
 	
+	animationTree.set("parameters/Idle/blend_position", vector)
+	animationTree.set("parameters/Run/blend_position", vector)
+	animationTree.set("parameters/Attack/blend_position", vector)
+	animationTree.set("parameters/Roll/blend_position", vector)
+	animationTree.set("parameters/Prepare/blend_position", vector)
+
+func get_input_vector():
+	var input_vector = Vector2.ZERO
+	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") 
+	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	return input_vector
+
 func attack_animation_finished():
 	state = MOVE
 	animationState.travel('Idle')
