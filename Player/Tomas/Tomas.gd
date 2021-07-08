@@ -71,7 +71,6 @@ func move_state(delta):
 
 func prepare_state(delta):
 	var input_vector = get_input_vector()
-	print(input_vector)
 	#Increase power meter by delta
 	if Input.is_action_just_released("ui_accept"):
 		# if power meter is greater than X state=superattack
