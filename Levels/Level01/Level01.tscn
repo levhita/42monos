@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://World/Props/TallProps.tres" type="TileSet" id=10]
 [ext_resource path="res://World/Props/Fireplace/Fireplace.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/Props/Crops/Crops.tscn" type="PackedScene" id=12]
+[ext_resource path="res://UI/Overlay.png" type="Texture" id=13]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -53,6 +54,9 @@ __meta__ = {
 [node name="Camera2D" parent="." instance=ExtResource( 1 )]
 visible = false
 position = Vector2( 144, 160 )
+editor_draw_screen = false
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
 position = Vector2( 0, 0 )
@@ -90,6 +94,8 @@ position = Vector2( 144, 160 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Collision/Tomas"]
 remote_path = NodePath("../../../Camera2D")
+update_rotation = false
+update_scale = false
 
 [node name="TallProps" type="TileMap" parent="Collision"]
 tile_set = ExtResource( 10 )
@@ -431,6 +437,14 @@ visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 color = Color( 1, 0, 0, 0.117647 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
