@@ -9,12 +9,12 @@ onready var emptyHearts = $EmptyHearts
 func set_health(value):
 	health = value
 	if hearts != null:
-		hearts.rect_size.x = 15 * health
+		hearts.rect_size.y = 11 * health
 
 func set_max_health(value):
 	max_health = value
 	if emptyHearts != null:
-		emptyHearts.rect_size.x = 15 * max_health
+		emptyHearts.rect_size.y = 11* max_health
 
 func _ready():
 	self.max_health = PlayerStats.max_health

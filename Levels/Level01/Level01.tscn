@@ -44,7 +44,7 @@ editor_draw_drag_margin = true
 player_path = NodePath("../Collision/Tomas")
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
-position = Vector2( 0, 0 )
+position = Vector2( -48, 0 )
 
 [node name="BottomRight" parent="Camera2D/Limits" index="1"]
 position = Vector2( 512, 512 )
@@ -415,10 +415,10 @@ __meta__ = {
 }
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 2 )]
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 15.0
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 32.0
+margin_bottom = 96.0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 visible = false
