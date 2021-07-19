@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=2]
@@ -25,25 +25,8 @@ glow_strength = 0.8
 glow_bloom = 1.0
 glow_blend_mode = 1
 glow_hdr_threshold = 0.0
-adjustment_brightness = 0.5
+adjustment_enabled = true
 adjustment_color_correction = ExtResource( 6 )
-
-[sub_resource type="Animation" id=2]
-resource_name = "Dawn"
-length = 180.0
-step = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:environment:adjustment_brightness")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 30, 180 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.5, 0.72, 1.0 ]
-}
 
 [node name="Level01" type="Node2D"]
 script = ExtResource( 9 )
@@ -54,9 +37,11 @@ __meta__ = {
 [node name="Camera2D" parent="." instance=ExtResource( 1 )]
 visible = false
 position = Vector2( 144, 160 )
+smoothing_speed = 20.0
 editor_draw_screen = false
 editor_draw_limits = true
 editor_draw_drag_margin = true
+player_path = NodePath("../Collision/Tomas")
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
 position = Vector2( 0, 0 )
@@ -91,11 +76,6 @@ position = Vector2( 168, 181 )
 
 [node name="Tomas" parent="Collision" instance=ExtResource( 3 )]
 position = Vector2( 144, 160 )
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Collision/Tomas"]
-remote_path = NodePath("../../../Camera2D")
-update_rotation = false
-update_scale = false
 
 [node name="TallProps" type="TileMap" parent="Collision"]
 tile_set = ExtResource( 10 )
@@ -426,6 +406,14 @@ crop = "Rice"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+margin_right = 320.0
+margin_bottom = 180.0
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 2 )]
 margin_left = 3.0
 margin_top = 3.0
@@ -441,14 +429,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -10.0
@@ -456,9 +436,5 @@ autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
-autoplay = "Dawn"
-anims/Dawn = SubResource( 2 )
 
 [editable path="Camera2D"]
