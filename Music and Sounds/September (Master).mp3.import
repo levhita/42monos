@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/September (Master).mp3-41de6fc5c4b9c9cae9c7502064af3141.mp3str"
+
+[deps]
+
+source_file="res://Music and Sounds/September (Master).mp3"
+dest_files=[ "res://.import/September (Master).mp3-41de6fc5c4b9c9cae9c7502064af3141.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

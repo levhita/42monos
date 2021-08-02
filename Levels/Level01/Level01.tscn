@@ -3,16 +3,15 @@
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Tomas/Tomas.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Music and Sounds/Music.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Music and Sounds/September (Master).mp3" type="AudioStream" id=4]
 [ext_resource path="res://World/Terrain/Terrain.tres" type="TileSet" id=5]
 [ext_resource path="res://World/Gradient/DreamsTexture.tres" type="Texture" id=6]
 [ext_resource path="res://World/Terrain/Collisions.tres" type="TileSet" id=7]
 [ext_resource path="res://World/Props/props.tres" type="TileSet" id=8]
-[ext_resource path="res://Levels/Level01/Level01.gd" type="Script" id=9]
 [ext_resource path="res://World/Props/TallProps.tres" type="TileSet" id=10]
 [ext_resource path="res://World/Props/Fireplace/Fireplace.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/Props/Crops/Crops.tscn" type="PackedScene" id=12]
-[ext_resource path="res://UI/Overlay.png" type="Texture" id=13]
+[ext_resource path="res://UI/DialogicTrigger.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -28,8 +27,10 @@ glow_hdr_threshold = 0.0
 adjustment_enabled = true
 adjustment_color_correction = ExtResource( 6 )
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 21.2116
+
 [node name="Level01" type="Node2D"]
-script = ExtResource( 9 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 8.0 ]
 }
@@ -44,7 +45,7 @@ editor_draw_drag_margin = true
 player_path = NodePath("../Collision/Tomas")
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
-position = Vector2( -48, 0 )
+position = Vector2( 0, 0 )
 
 [node name="BottomRight" parent="Camera2D/Limits" index="1"]
 position = Vector2( 512, 512 )
@@ -75,7 +76,7 @@ tile_data = PoolIntArray( 131083, 3, 0, 131084, 3, 0, 131085, 3, 0, 131086, 3, 0
 position = Vector2( 168, 181 )
 
 [node name="Tomas" parent="Collision" instance=ExtResource( 3 )]
-position = Vector2( 144, 160 )
+position = Vector2( 150.23, 161.987 )
 
 [node name="TallProps" type="TileMap" parent="Collision"]
 tile_set = ExtResource( 10 )
@@ -406,30 +407,14 @@ crop = "Rice"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-margin_right = 320.0
-margin_bottom = 180.0
-texture = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 2 )]
-margin_left = 16.0
+margin_left = 8.0
 margin_top = 8.0
-margin_right = 32.0
+margin_right = 24.0
 margin_bottom = 96.0
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-margin_right = 320.0
-margin_bottom = 180.0
-color = Color( 1, 0, 0, 0.117647 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 4 )
 volume_db = -10.0
 autoplay = true
@@ -437,4 +422,17 @@ autoplay = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
+[node name="DialogicTrigger" parent="." instance=ExtResource( 14 )]
+position = Vector2( 56, 6 )
+dialog = "mom1"
+
+[node name="CollisionShape2D" parent="DialogicTrigger" index="0"]
+position = Vector2( 0.343655, 23.3048 )
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" parent="DialogicTrigger" index="1"]
+position = Vector2( 2.90935, 7.21419 )
+frame = 2
+
 [editable path="Camera2D"]
+[editable path="DialogicTrigger"]

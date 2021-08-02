@@ -1,0 +1,33 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1627861393.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1627861393.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Hi Mom! Mr. Buendia allowed me to do the harvest all by myself this year.\nI tought he would still be mad from the last time when I destroyed the whole paddy.\nBut this year he is having this back pains, and I have worked a lot in controlling my strength.\nIt's just like you said:\n\"Tomas, you are not a blunt, you are just a clumsy teenager...\n like every single teenager in the world\"\nAnyway I'm gotta hurry to finish, Mrs. Buendia is making enchiladas verdes for me as a reward.\nJust like you used to do...\n... I miss you mom."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.2.5",
+		"file": "timeline-1627862621.json",
+		"name": "mom1"
+	}
+}
