@@ -9,20 +9,12 @@
 	"nickname": "",
 	"nickname_bool": false,
 	"offset_x": 0,
-	"offset_y": 0,
+	"offset_y": 10,
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://Player/Tomas/tomas_neutral.png"
-		},
-		{
-			"name": "happy",
-			"path": "res://Player/Tomas/tomas_happy.png"
-		},
-		{
-			"name": "sad",
-			"path": "res://Player/Tomas/tomas_sad.png"
+			"path": ""
 		}
 	],
-	"scale": 100
+	"scale": 20
 }
