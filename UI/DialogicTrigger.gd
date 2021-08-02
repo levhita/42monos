@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var animatedSprite = $AnimatedSprite
-export(String) var dialog = ""
+export(String) var timeline = ""
 signal dialog_finished
 signal dialog_started
 
@@ -12,7 +12,7 @@ func _input(event):
 	if get_node_or_null("DialogNode") == null:
 		if event.is_action_pressed("ui_select") && animatedSprite.visible:
 			get_tree().paused = true
-			var dialog = Dialogic.start("mom1")
+			var dialog = Dialogic.start(timeline)
 			# emit_signal("dialog_started")
 			dialog.pause_mode = Node.PAUSE_MODE_PROCESS
 			dialog.connect("timeline_end", self, "unpause")

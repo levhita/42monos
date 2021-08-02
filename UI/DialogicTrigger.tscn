@@ -36,7 +36,7 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
-frame = 2
+frame = 1
 playing = true
 
 [connection signal="body_entered" from="." to="." method="_on_DialogicTrigger_body_entered"]
