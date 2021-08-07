@@ -7,6 +7,7 @@ export var MAX_SPEED = 80
 # Acceleration and friction is the same thing because of the algorithm below
 onready var ACCELERATION = MAX_SPEED * 8 # 1/8 of a second
 export(float) var ROLL_SPEED = 1.25
+export(float) var SPECIAL_SPEED = 1.5
 export(float) var DAMAGE = 1
 
 export(Vector2) var START_VECTOR = Vector2.DOWN
@@ -17,11 +18,12 @@ var velocity = Vector2.ZERO
 enum {
 	MOVE,
 	ROLL,
+	PREPARE,
 	ATTACK,
-	PREPARE
+	SPECIAL
 }
 var state = MOVE
-
+var power = 0
 var stats = PlayerStats
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
@@ -42,10 +44,12 @@ func _physics_process(delta):
 			move_state(delta)
 		ROLL:
 			roll_state(delta)
-		ATTACK:
-			attack_state(delta)
 		PREPARE:
 			prepare_state(delta)
+		ATTACK:
+			attack_state(delta)
+		SPECIAL:
+			special_state(delta)	
 
 func move_state(delta):
 	var input_vector = get_input_vector()
@@ -71,11 +75,18 @@ func move_state(delta):
 
 func prepare_state(delta):
 	var input_vector = get_input_vector()
-	#Increase power meter by delta
+	power += delta
+	if (power>=1):
+		blink.play("Start")
 	if Input.is_action_just_released("ui_accept"):
-		# if power meter is greater than X state=superattack
-		state = ATTACK
-		animationState.travel('Attack')
+		blink.play("Stop")
+		if (power>=1):
+			state=SPECIAL
+			animationState.travel('Special')
+		else:
+			state = ATTACK
+			animationState.travel('Attack')
+		power = 0
 	if(input_vector != Vector2.ZERO):
 		set_vectors(input_vector)
 	
@@ -84,6 +95,11 @@ func prepare_state(delta):
 
 func attack_state(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, ACCELERATION * delta)
+	velocity = move_and_slide(velocity)
+
+func special_state(delta):
+	# instantly acchieves max speed
+	velocity = roll_vector.clamped(1) * MAX_SPEED * SPECIAL_SPEED
 	velocity = move_and_slide(velocity)
 
 func roll_state(delta):
@@ -103,6 +119,7 @@ func set_vectors(vector):
 	animationTree.set("parameters/Attack/blend_position", vector)
 	animationTree.set("parameters/Roll/blend_position", vector)
 	animationTree.set("parameters/Prepare/blend_position", vector)
+	animationTree.set("parameters/Special/blend_position", vector)
 
 func get_input_vector():
 	var input_vector = Vector2.ZERO
@@ -111,6 +128,10 @@ func get_input_vector():
 	return input_vector
 
 func attack_animation_finished():
+	state = MOVE
+	animationState.travel('Idle')
+
+func special_animation_finished():
 	state = MOVE
 	animationState.travel('Idle')
 
