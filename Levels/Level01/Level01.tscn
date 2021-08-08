@@ -38,6 +38,7 @@ __meta__ = {
 [node name="Camera2D" parent="." instance=ExtResource( 1 )]
 visible = false
 position = Vector2( 144, 160 )
+zoom = Vector2( 0.5, 0.5 )
 smoothing_speed = 20.0
 editor_draw_screen = false
 editor_draw_limits = true
@@ -406,12 +407,14 @@ position = Vector2( 160, 448 )
 crop = "Rice"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, 0, 0 )
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 2 )]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 24.0
-margin_bottom = 96.0
+margin_bottom = 105.0
 
 [node name="LevelMusic" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
